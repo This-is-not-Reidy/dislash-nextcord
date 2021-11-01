@@ -1233,7 +1233,7 @@ class InteractionClient:
             await self._auto_register_or_patch()
         if self._uses_nextcord_2:
             self._modify_parser(
-                self.client._AutoShardedClient__shards[shard_id].ws._nextcord_parsers,
+                self.client._AutoShardedClient__shards[shard_id].ws._discord_parsers,
                 "INTERACTION_CREATE",
                 self._on_raw_interaction,
             )
@@ -1241,7 +1241,7 @@ class InteractionClient:
     async def _on_connect(self):
         if not isinstance(self.client, nextcord.AutoShardedClient):
             if self._uses_nextcord_2:
-                self._modify_parser(self.client.ws._nextcord_parsers, "INTERACTION_CREATE", self._on_raw_interaction)
+                self._modify_parser(self.client.ws.discord_parsers, "INTERACTION_CREATE", self._on_raw_interaction)
             await self._fill_app_id()
             await self._cache_global_commands()
             await self._cache_guild_commands()
