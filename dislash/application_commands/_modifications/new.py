@@ -254,7 +254,7 @@ async def send(
             raise InvalidArgument('reference parameter must be Message, MessageReference, or PartialMessage') from None
 
     if view:
-        if not hasattr(view, '__nextcord_ui_view__'):
+        if not hasattr(view, '__discord_ui_view__'):
             raise InvalidArgument(f'view parameter must be View not {view.__class__!r}')
 
         _components = view.to_components()
